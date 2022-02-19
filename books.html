@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="imagini/favicon.ico" type="image/x-icon">
+    <link href="Css/main.css" rel="stylesheet" type="text/css" />
+    <title> E-library: Books</title>
+    <script>
+      function fetch() {
+        // GET SEARCH TERM
+        var data = new FormData();
+          data.append('search', document.getElementById("search").value);
+          data.append('ajax', 1);
+
+        // AJAX SEARCH REQUEST
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "books.php", true);
+        xhr.onload = function () {
+          if (this.status==200) {
+            var results = JSON.parse(this.response),
+                wrapper = document.getElementById("results");
+            wrapper.innerHTML = "";
+            if (results.length > 0) {
+              for(var res of results) {
+                var line = document.createElement("div");
+                line.innerHTML = "Title:" + res['BookName']+ " " + " ISBNNumber: " + res['ISBNNumber'];
+                wrapper.appendChild(line);
+              }
+            } else {
+              wrapper.innerHTML = "No results found";
+            }
+          } else {
+            alert("ERROR LOADING FILE!");
+          }
+        };
+        xhr.send(data);
+        return false;
+      }
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    div.scrollmenu {
+      background-color: #333;
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    div.scrollmenu a {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+    }
+
+    div.scrollmenu a:hover {
+      background-color: #777;
+    }
+    h1 {text-align: center;}
+    form {text-align: center}
+    div.results {text-align: center}
+    </style>
+
+  </head>
+  <body style="background-color:#ebebe0;">
+
+    <div class="logo" align="center">
+    		<a href="../Home/home.html"><img src="imagini/logo.png" ></a>
+    </div>
+
+    <div class="scrollmenu">
+       <a href='../Home/home.html'>Home</a>
+      <a href='../Books/books.html'>Books</a>
+      <a href='../About/about.html'>About</a>
+      <a href='../Login/login.php'>Login</a>
+      <a href='../Sign Up/signup.php'>Sign Up</a>
+      <a href='../Review/review.html'>Review</a>
+      <a href='../Contact/contact.html'>Contact</a>
+      </div>
+    <!-- [SEARCH FORM] -->
+    <form onsubmit="return fetch();">
+      <h1>SEARCH FOR BOOKS </h1>
+      <input type="text" id="search" required/>
+      <input type="submit" value="Search"/>
+    </form>
+
+    <!-- [SEARCH RESULTS] -->
+    <div id="results"></div>
+
+    <p>Click on kindle or coffee to find more about them.</p>
+
+    <img src="imagini/ebooks.jpg" width="1024" height="663"  alt="Book Map" usemap="#bookmap" align="center">
+
+    <map name="bookmap">
+    <area shape="rect" coords="389,14,887,573" alt="Computer" href="https://en.wikipedia.org/wiki/Digital_library">
+    <area shape="rect " coords="8,103,407,410" alt="Cup of coffee" href="https://en.wikipedia.org/wiki/Coffee">
+    </map>
+
+
+  </body>
+</html>

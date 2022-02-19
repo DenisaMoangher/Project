@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Reviews System</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="reviews.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="imagini/favicon.ico" type="image/x-icon">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		div.scrollmenu {
+			background-color: #333;
+			overflow: auto;
+			white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+			display: inline-block;
+			color: white;
+			text-align: center;
+			padding: 14px;
+			text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+			background-color: #777;
+		}
+		</style>
+	</head>
+	<body>
+		<body>
+			<div class="logo" align="center">
+							<a href='../Home/home.html'><img src="imagini/logo.png" ></a>
+			</div>
+		<div class="scrollmenu">
+			 <a href='../Home/home.html'>Home</a>
+			<a href='../Books/books.html'>Books</a>
+			<a href='../About/about.html'>About</a>
+			<a href='../Login/login.php'>Login</a>
+			<a href='../Sign Up/signup.php'>Sign Up</a>
+			<a href='../Review/review.html'>Review</a>
+			<a href='../Contact/contact.html'>Contact</a>
+			</div>
+		<div class="content home">
+			<h2>Reviews</h2>
+			<p>Check out the below reviews for our website.</p>
+      <div class="reviews"></div>
+<script>
+const reviews_page_id = 1;
+fetch("reviews.php?page_id=" + reviews_page_id).then(response => response.text()).then(data => {
+	document.querySelector(".reviews").innerHTML = data;
+	document.querySelector(".reviews .write_review_btn").onclick = event => {
+		event.preventDefault();
+		document.querySelector(".reviews .write_review").style.display = 'block';
+		document.querySelector(".reviews .write_review input[name='name']").focus();
+	};
+	document.querySelector(".reviews .write_review form").onsubmit = event => {
+		event.preventDefault();
+		fetch("reviews.php?page_id=" + reviews_page_id, {
+			method: 'POST',
+			body: new FormData(document.querySelector(".reviews .write_review form"))
+		}).then(response => response.text()).then(data => {
+			document.querySelector(".reviews .write_review").innerHTML = data;
+		});
+	};
+});
+</script>
+		</div>
+	</body>
+</html>

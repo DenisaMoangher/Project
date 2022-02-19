@@ -1,0 +1,53 @@
+<html>
+<head>
+    <link href="CSS/style.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/main.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="imagini/favicon.ico" type="image/x-icon">
+  </head>
+
+    <body>
+      <div class="logo" align="center">
+      				<a href="../Home/home.html"><img src="imagini/logo.png" ></a>
+      </div>
+      <div class="scrollmenu">
+         <a href='../Home/home.html'>Home</a>
+        <a href='../Books/books.html'>Books</a>
+        <a href='../About/about.html'>About</a>
+        <a href='../Login/login.php'>Login</a>
+        <a href='../Sign Up/signup.php'>Sign Up</a>
+        <a href='../Review/review.html'>Review</a>
+        <a href='../Contact/contact.html'>Contact</a>
+        </div>
+
+      <div id="form-main">
+    <div id="form-div">
+      <form action="mailto:denisa.moangher@gmail.com" method="POST">
+        <div class="container" align="center">
+        <div class="row">
+      			<h1>Contact us</h1>
+      	</div>
+      	<div class="row">
+      			<h4 style="text-align:center">We'd love to hear from you!</h4>
+      	</div>
+        <p class="name">
+         <input name="name" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Name" id="name" required />
+        </p>
+
+        <p class="email">
+          <input name="email" type="text" class="validate[required,custom[email]] feedback-input" id="email" placeholder="Email"  required/>
+        </p>
+
+        <p class="text">
+          <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Message" required></textarea>
+        </p>
+
+
+        <div class="submit">
+          <input type="submit" value="Send" id="button-blue"/>
+          <div class="ease"></div>
+        </div>
+      </form>
+    </div>
+
+    </body>
+</html>
